@@ -128,7 +128,7 @@ async def lolzsait(ctx):
     )
     await ctx.send(embed=embed)
 
-client.run('ODY2MDM4MjI3OTQwNDA5Mzg0.YPMu8w.VoumK2MMN0VdqWtGAJlpZlP_pZ0')
+token = oc.environ.get('BOT_TOKEN')
 
 
 
