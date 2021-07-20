@@ -4,6 +4,9 @@ from discord.voice_client import VoiceClient
 import youtube_dl
 import asyncio
 from random import choice
+import requests
+from PIL import Image, ImageFont, ImageDraw
+import io 
 import os
 
 
