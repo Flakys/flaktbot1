@@ -139,7 +139,7 @@ async def lolzsait(ctx):
 async def card_user(ctx):
     await ctx.channel.purge(limit = 1)
     
-    img = Image.new('RGBA'), (400, 200), '#e82ad5'
+    img = Image.new('RGBA', (400, 200), '#e82ad5')
     url = str(ctx.author.avatar_url)[:-10]
 
     response = requests.get(url, stream = True)
