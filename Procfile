@@ -1,1 +1,1 @@
-worker: botrun3.py
+worker: python botrun3.py
