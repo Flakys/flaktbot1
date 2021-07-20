@@ -5,6 +5,7 @@ import youtube_dl
 import asyncio
 from random import choice
 import requests
+import PIL
 from PIL import Image, ImageFont, ImageDraw
 import io 
 import os
