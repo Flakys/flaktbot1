@@ -5,7 +5,7 @@ import youtube_dl
 import asyncio
 from random import choice
 import os
-from keras import image
+
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
