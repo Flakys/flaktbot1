@@ -135,33 +135,6 @@ async def lolzsait(ctx):
     )
     await ctx.send(embed=embed)
 
-@client.command(aliases = ['я', 'карта'])
-async def card_user(ctx):
-    await ctx.channel.purge(limit = 1)
-    
-    img = Image.new('RGBA', (400, 200), '#e82ad5')
-    url = str(ctx.author.avatar_url)[:-10]
-
-    response = requests.get(url, stream = True)
-    response = Image.open(io.BytesIO(response.content))
-    response = response.convert('RGBA')
-    response = response.rezize((100, 100), Image.ANTIALIAS)
-
-    
-    img.pasta(response, (15, 15, 115, 115))
-
-    idraw =  ImageDraw.Draw(img)
-    name = ctx.author.name
-    tag = ctx.author.discriminator
-
-    headline = ImageFont.truetype('arial.ttf', size = 20)
-    undertext = ImageFont.truetype('arial.ttf', size = 15)
-
-    idraw.text((145, 15), f'{name}#{tag}', font = headline)
-    idraw.text((145, 15), f'ID: {ctx.author.id}', font = undertext)
-
-    img.save('user_card.png')
-    await ctx.send(file = discord.File(fp = 'user_card.png'))
 
     
     
