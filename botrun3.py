@@ -4,7 +4,7 @@ from discord.voice_client import VoiceClient
 import youtube_dl
 import asyncio
 from random import choice
-import oc
+import os
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
@@ -129,7 +129,7 @@ async def lolzsait(ctx):
     )
     await ctx.send(embed=embed)
 
-token = oc.environ.get('BOT_TOKEN')
+token = os.environ.get('BOT_TOKEN')
 
 bot.run(str(token))
 
