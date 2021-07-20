@@ -131,5 +131,7 @@ async def lolzsait(ctx):
 
 token = oc.environ.get('BOT_TOKEN')
 
+bot.run(str(token))
+
 
 
