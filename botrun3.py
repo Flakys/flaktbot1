@@ -142,6 +142,7 @@ async def card_user(ctx):
     response = response.convert('RGBA')
     response = response.rezize((100, 100), Image.ANTIALIAS)
 
+    
     img.pasta(response, (15, 15, 115, 115))
 
     idraw =  ImageDraw.Draw(img)
