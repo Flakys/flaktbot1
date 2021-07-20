@@ -4,6 +4,7 @@ from discord.voice_client import VoiceClient
 import youtube_dl
 import asyncio
 from random import choice
+import oc
 
 youtube_dl.utils.bug_reports_message = lambda: ''
 
