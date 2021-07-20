@@ -28,7 +28,7 @@ urllib3
 virtualenv                        
 yarl                             
 youtube-dl                        
-PIL
+Pillow
 
 
 
