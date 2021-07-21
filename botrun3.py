@@ -1,13 +1,19 @@
 import discord
+from discord import client
 from discord.ext import commands, tasks
+from discord.ext.commands.bot import Bot
 from discord.voice_client import VoiceClient
 import youtube_dl
 import asyncio
 from random import choice
 import requests
 from PIL import Image, ImageFont, ImageDraw
-import io 
+import io
 import os
+from discord.utils import get
+from youtube_dl.utils import DateRange, cli_bool_option
+ 
+client = discord.Client()
 
 
 
@@ -66,6 +72,15 @@ async def on_ready():
     change_status.start()
     print('Флэки онлайн!')
 
+@client.command( pass_context = True )
+@commands.has_permissions( administrator = True )
+
+async def clear( ctx, amount = 10 ):
+    await ctx.channel.purge( limit = amount )
+
+
+
+
 @client.event
 async def on_member_join(member):
     channel = discord.utils.get(member.guild.channels, name='general')
@@ -89,13 +104,13 @@ async def die(ctx):
 async def credits(ctx):
     await ctx.send('Сделано `Flaky#9564`')
     await ctx.send('Спасибо моему мозгу за эту идею в 3 ночи')
-    await ctx.send('Помощников еще нет(')
+    await ctx.send('Помощников еще нет')
 
 @client.command(name='creditz', help='Эта команда показывает всех кто делал меня')
 async def creditz(ctx):
     await ctx.send('**Один я делал Флэки, долбоеб**')
     await ctx.send('Пошутила')
-    await ctx.send('Шутка хуйня, знаю(')
+    await ctx.send('Шутка хуйня, знаю')
 
 @client.command(name='play', help='Эта команда для проигрывания музыки) Просто вставь ссылку на видео')
 async def play(ctx, url):
@@ -107,6 +122,8 @@ async def play(ctx, url):
         channel = ctx.message.author.voice.channel
 
     await channel.connect()
+    
+    await ctx.send(f'Флэки присоеденилась к каналу: {channel}')
 
     server = ctx.message.guild
     voice_channel = server.voice_client
@@ -137,14 +154,36 @@ async def TC(ctx):
     await ctx.send(embed=embed)
 
 
-    
-    
-    
-    
-    
-token = os.environ.get('BOT_TOKEN')
+hello_words = [ 'hello', 'привет', 'ky', 'ку', 'здарова', 'hi' ]
+answer_worlds = [ 'инфа','информация', 'сервер', 'команды', 'команды сервера', 'server', 'info', 'что тут делать', 'бот' ]
+goodbye_worlds = [ 'пока', 'пока всем', 'до завтра', 'удачи', 'bye' ]
 
-client.run(str(token))
+@client.command(pass_context=True)
+async def leave(ctx):
+    channel=ctx.message.author.voice.channel
+    voice=get(client.voice_clients, guild = ctx.guild)
+
+
+    if voice and voice.is_connected():
+        await voice.disconnect()
+    else:
+        voice = await channel.connect()
+    await ctx.send(f'Флэки отсоеденилась от канала: {channel}')
+
+
+
+async def on_message( message ):
+    await client.process_commands( message )
+    msg = message.content.lower()
+    if msg in hello_words:
+        await message.channel.send( 'Привет, я Флэки, чего хотел?' )
+
+    if msg in answer_worlds:
+        await message.channel.send ( 'Пропиши в чат команду F help, и все узнаешь!' )
+
+    if msg in goodbye_worlds:
+        await message.channel.send( 'Пока, удачи!' )
+
 
 
 
