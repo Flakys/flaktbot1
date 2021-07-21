@@ -128,7 +128,7 @@ async def change_status():
 
 
 @client.command(name='TC', help='Терхподдержка если чето не работает')
-async def lolzsait(ctx):
+async def TC(ctx):
     embed = discord.Embed(
         title="***Тык*** для перехода",
         description="Мой ВК, типа техподдержка",
